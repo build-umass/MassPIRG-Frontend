@@ -1,0 +1,10 @@
+.bg-nav {
+    background-color: #3E8E90;
+    /* background: rgba(0,0,255,0.1); */
+}
+
+.text-nav {
+    color: #A3C854;
+    font-weight: bold;
+    /* background-color:rgba(0,0,255,0.1); */
+}
