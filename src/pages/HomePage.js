@@ -1,5 +1,7 @@
+import CommonImage from "../components/CommonImage";
+
 const HomePage = () => {
-    return <h1>This is the home page</h1>
+    return <CommonImage />
 }
 
 export default HomePage;
