@@ -1,8 +1,8 @@
-import Image1 from '../assets/image1.svg';
+import MainImage from '../assets/main_image.png';
 
 const CommonImage = () => {
     return <div className='d-flex justify-content-center my-5'>
-        <img src={Image1} className="img-fluid" alt="Responsive image"></img>
+        <img src={MainImage} className="img-fluid" alt="Responsive image"></img>
     </div>
 }
 

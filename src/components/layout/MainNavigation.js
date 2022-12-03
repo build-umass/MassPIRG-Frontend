@@ -20,7 +20,7 @@ const MainNavigation = () => {
                                 <a className="nav-link text-white" href="/">Our Campaigns</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link text-white" href="/">Who We Are</a>
+                                <a className="nav-link text-white" href="/our-team">Who We Are</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link text-white" href="/">Get Involved</a>
