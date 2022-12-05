@@ -15,14 +15,39 @@ const AllCampaigns = () => {
                                 We Helped Contact Over 50,000 Students To Help Them Vote And Inform Them About What
                                 Is On The Ballot In A Non-Partisan Way
                             </p>
-                            <a href="/#" class="card-hover-text btn btn-outline-primary btn-sm">
+                            <a href="/#" class="card-hover-text">
                                 Click to Learn More
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="p-3 campaign">First campaign</div>
+                <div class="col campaign">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title card-text">New Voters Project</h5>
+                            <p class="card-hover-text">
+                                We Helped Contact Over 50,000 Students To Help Them Vote And Inform Them About What
+                                Is On The Ballot In A Non-Partisan Way
+                            </p>
+                            <a href="/#" class="card-hover-text">
+                                Click to Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col campaign">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title card-text">New Voters Project</h5>
+                            <p class="card-hover-text">
+                                We Helped Contact Over 50,000 Students To Help Them Vote And Inform Them About What
+                                Is On The Ballot In A Non-Partisan Way
+                            </p>
+                            <a href="/#" class="card-hover-text">
+                                Click to Learn More
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

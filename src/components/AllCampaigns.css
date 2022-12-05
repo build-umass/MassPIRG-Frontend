@@ -1,0 +1,13 @@
+.card {
+    height: 50px;
+}
+
+.card-hover-text{
+    display:none;
+}
+.card:hover .card-text{
+    display:none;
+}
+.card:hover .card-hover-text{
+    display:block;
+}
