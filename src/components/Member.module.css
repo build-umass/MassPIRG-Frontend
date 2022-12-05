@@ -1,3 +1,13 @@
 .bgGray {
     background-color: #D9D9D9;
 }
+
+.textNameTitle {
+    font-weight: 700;
+    font-size: 18px;
+}
+.textEmail {
+    color: #3E8E90;
+    font-weight: 700;
+    font-size: 18px;
+}
