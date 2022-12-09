@@ -19,7 +19,7 @@ const MainNavigation = () => {
                             <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
                         </li> */}
                             <li className="nav-item mx-3">
-                                <a className="text-white nav-text-font-options" href="/">Our Campaigns</a>
+                                <a className="text-white nav-text-font-options" href="/campaigns">Our Campaigns</a>
                             </li>
                             <li className="nav-item mx-3">
                                 <a className="text-white nav-text-font-options" href="/our-team">Who We Are</a>

@@ -1,0 +1,33 @@
+.card-hover-text{
+    display:none;
+}
+.card:hover .card-text{
+    display:none;
+}
+
+.card:hover {
+    transform:scale(1.05);
+    transition: transform 250ms, opacity 400ms;
+}
+
+.card:hover .card-hover-text{
+    display:block;
+}
+
+.card {
+    background-color: #D5E3BE !important;
+    color: black !important;
+}
+
+h1 {
+    color: #A3C854;
+}
+
+p {
+    font-size: 25px;
+}
+
+.involved {
+    background-color: #A3C854 !important;
+    outline: 0 !important;
+}
