@@ -29,7 +29,7 @@ const MainNavigation = () => {
                             </li>
                         </ul>
                     </div>
-            </div>
+                </div>
             </nav>
         </header>
     );
