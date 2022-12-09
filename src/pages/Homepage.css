@@ -1,0 +1,19 @@
+.bgAbout {
+    background-color: #D5E3BE;
+}
+
+.aboutText {
+    font-size: xx-large;
+    font-style: bold;
+}
+
+.bgJoin {
+    background-color: #499B9D;
+}
+
+.joinText {
+    font-size: xx-large;
+    font-style: bold;
+    align-self: center;
+    height: 100%;
+}
