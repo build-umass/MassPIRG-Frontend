@@ -15,5 +15,8 @@
     font-size: xx-large;
     font-style: bold;
     align-self: center;
-    height: 100%;
+}
+
+.linkText {
+    color:#000000;
 }
