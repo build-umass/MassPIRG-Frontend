@@ -1,5 +1,8 @@
+import React, { useState, Fragment } from "react";
+import { useNavigate } from "react-router-dom";
 import CommonImage from "../components/CommonImage";
 import Member from "../components/Member";
+// import DynamicMember from "../components/DynamicMember";
 import image1 from "../assets/image1.png";
 import image2 from "../assets/image2.png";
 import image3 from "../assets/image3.png";
@@ -7,6 +10,7 @@ import image4 from "../assets/image4.png";
 
 const members = [
     {
+        id: 1,
         name: "Ashley Agostinelli // Chapter Chair",
         classAndMajor: "Class of 2023 | Psychology and Linguistics Major",
         email: "amagostinell@umass.edu",
@@ -14,6 +18,7 @@ const members = [
         image: image1,
     },
     {
+        id: 2,
         name: "Caitlyn Egan // Chapter Vice Chair",
         classAndMajor: "Class of 2023 | Environmental Science and Public Policy Major",
         email: "cegan@umass.edu",
@@ -21,6 +26,7 @@ const members = [
         image: image2,
     },
     {
+        id: 3,
         name: "Catherine Sales // Chapter Treasurer",
         classAndMajor: "Class of 2023 | Psychology Major",
         email: "csales@umass.edu",
@@ -28,6 +34,7 @@ const members = [
         image: image3,
     },
     {
+        id: 4,
         name: "Zeina Zahoori // Chapter Secretary",
         classAndMajor: "Class of 2025 | Computer Science and Mathematics Major",
         email: "zzahoori@umass.edu",
@@ -35,16 +42,66 @@ const members = [
         image: image4,
     }
 ]
+
 const EBoardMembers = () => {
+    const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const handleAddMember = () => {
+        // console.log("AddMember");
+        navigate("/our-team/new");
+    }
     return <>
         <CommonImage />
-        <div className="container">
+        <div className="container mb-3">
             <h1 className="d-flex justify-content-center">Chapter Leadership</h1>
-            {members.map(member => 
-                <Member name={member.name} classAndMajor={member.classAndMajor} email={member.email} description={member.description} image={member.image} />
+            {members.map(member =>
+                <Member key={member.id} name={member.name} classAndMajor={member.classAndMajor} email={member.email} description={member.description} image={member.image} isLoggedIn={isLoggedIn} />
+            )}
+            {isLoggedIn && (
+                <div className="d-flex justify-content-center">
+                    <button className="btn btn-success" onClick={handleAddMember}>
+                        Add member
+                    </button>
+                </div>
             )}
         </div>
     </>
 }
+
+// const EBoardMembers = () => {
+//     const [isLoggedIn, setIsLoggedIn] = useState(true);
+//     return (
+//         <>
+//             <CommonImage />
+//             <div className="container">
+//                 <h1 className="d-flex justify-content-center">Chapter Leadership</h1>
+//                 {members.map(member => (
+//                     isLoggedIn ? (
+//                         <Fragment key={member.id}>
+//                             <DynamicMember
+//                                 name={member.name}
+//                                 classAndMajor={member.classAndMajor}
+//                                 email={member.email}
+//                                 description={member.description}
+//                                 image={member.image}
+//                             />
+//                         </Fragment>
+//                     ) : (
+//                         <Fragment key={member.id}>
+//                             <Member
+//                                 name={member.name}
+//                                 classAndMajor={member.classAndMajor}
+//                                 email={member.email}
+//                                 description={member.description}
+//                                 image={member.image}
+//                             />
+//                         </Fragment>
+//                     ))
+//                 )}
+//             </div>
+//         </>
+//     );
+// }
+
 
 export default EBoardMembers;
