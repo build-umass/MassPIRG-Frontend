@@ -3,6 +3,8 @@ import './AddMemberForm.css';
 
 function AddMemberForm() {
     const [name, setName] = useState('');
+    const [role, setRole] = useState('');
+    const [classYear, setClassYear] = useState('');
     const [major, setMajor] = useState('');
     const [email, setEmail] = useState('');
     const [description, setDescription] = useState('');
@@ -20,10 +22,22 @@ function AddMemberForm() {
                 Name
                 <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="add-member-input" />
             </label>
+
             <label className="add-member-label">
-                Class - Major
+                Role
+                <input type="text" value={role} onChange={(e) => setRole(e.target.value)} className="add-member-input" />
+            </label>
+
+            <label className="add-member-label">
+                Class
+                <input type="text" value={classYear} onChange={(e) => setClassYear(e.target.value)} className="add-member-input" />
+            </label>
+
+            <label className="add-member-label">
+                Major
                 <input type="text" value={major} onChange={(e) => setMajor(e.target.value)} className="add-member-input" />
             </label>
+                
             <label className="add-member-label">
                 Email
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="add-member-input" />
