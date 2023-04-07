@@ -9,8 +9,8 @@ const Member = (props) => {
                 {/* <img src={Image} className="img-fluid" alt="Responsive image"></img> */}
             </div>
             <div className="col-8 my-3">
-                <h3 className={`${classes.textNameTitle}`}>{props.name}</h3>
-                <p>{props.classAndMajor}</p>
+                <h3 className={`${classes.textNameTitle}`}>{props.name} // {props.role}</h3>
+                <p>{props.classYear} | {props.major}</p>
                 <p className={`${classes.textEmail}`}>{props.email}</p>
                 <p>{props.description}</p>
                 {props.isLoggedIn && <button className="btn btn-danger">Delete</button>}

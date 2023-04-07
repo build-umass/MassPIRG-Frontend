@@ -7,6 +7,7 @@ import NotFound from './pages/NotFound';
 import EBoardMembers from './pages/EBoardMembers';
 import AddMemberForm from './pages/AddMemberForm';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/our-team" element={<EBoardMembers />} />
         <Route path="/our-team/new" element={<AddMemberForm />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
