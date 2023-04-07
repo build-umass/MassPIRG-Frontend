@@ -20,7 +20,7 @@ const LoginPage = () => {
                         </div>
                         <div className="tab-content">
                             <div className="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                                <form classNameName="login-page__container__right__form">
+                                <form className="login-page__container__right__form">
                                     <div className="form-outline mb-4">
                                         <input type="email" id="loginName" className="form-control" />
                                         <label className="form-label text-light" for="loginName">Email or username</label>
