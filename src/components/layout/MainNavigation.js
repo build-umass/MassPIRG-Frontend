@@ -1,5 +1,15 @@
 import "./MainNavigation.css";
+import { useSignOut, useIsAuthenticated } from "react-auth-kit";
+import { useNavigate } from "react-router-dom";
 const MainNavigation = () => {
+    const signOut = useSignOut();
+    const navigate = useNavigate();
+    const isAuthenticated = useIsAuthenticated();
+    const isLoggedIn = isAuthenticated();
+    const logout = () => {
+        signOut();
+        navigate('/');
+    }
     return (
         <header>
             <nav className="navbar navbar-expand-lg navbar-light bg-nav">
@@ -28,6 +38,7 @@ const MainNavigation = () => {
                                 <a className="text-white nav-text-font-options" href="/">Get Involved</a>
                             </li>
                         </ul>
+                        {isLoggedIn && <button onClick={logout} className="btn btn-danger">Logout</button>}
                     </div>
                 </div>
             </nav>
