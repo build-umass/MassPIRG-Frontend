@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
+import { useSignIn } from 'react-auth-kit';
+import axios, { AxiosError } from 'axios';
 import LoginImage from '../assets/login.png';
 import './LoginPage.css';
 import Logo from '../assets/mass-logo.png';
@@ -10,7 +11,7 @@ const RegisterPage = () => {
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
     const navigate = useNavigate();
-
+    const signIn = useSignIn();
     const submitHandler = (event) => {
         event.preventDefault();
         const baseUrl = "http://localhost:5001/api";
@@ -21,11 +22,22 @@ const RegisterPage = () => {
             password: password,
         }).then(res => {
             const { data } = res;
-            localStorage.setItem('token', data.token);
+            // localStorage.setItem('token', data.token);
+            signIn({
+                token: data.token,
+                expiresIn: 3600,
+                tokenType: "Bearer",
+                authState: { email: email }
+            })
             navigate('/');
             console.log(data.message);
         }).catch(err => {
-            console.log(err.response.data.message);
+            if (err && err instanceof AxiosError)
+            {
+                console.log(err.response?.data.message);
+            } else if (err && err instanceof Error) {
+                console.log(err.message);
+            }
         })
     }
 

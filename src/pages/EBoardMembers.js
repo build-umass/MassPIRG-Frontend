@@ -2,6 +2,8 @@ import React, { useState, Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import CommonImage from "../components/CommonImage";
 import Member from "../components/Member";
+import { useIsAuthenticated, useAuthHeader, useAuthUser } from 'react-auth-kit';
+
 // import DynamicMember from "../components/DynamicMember";
 import image1 from "../assets/image1.png";
 import image2 from "../assets/image2.png";
@@ -53,7 +55,23 @@ const members = [
 
 const EBoardMembers = () => {
     const navigate = useNavigate();
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    // const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const isAuthenticated = useIsAuthenticated()
+    const auth = useAuthUser();
+    const authHeader = useAuthHeader();
+    const isLoggedIn = isAuthenticated();
+    if (isLoggedIn)
+    {
+        // Redirect to Dashboard
+        console.log(auth());
+        console.log(authHeader());
+        console.log("Login");
+    }
+    else
+    {
+        // Redirect to Login
+        console.log("Not login");
+    }
     const handleAddMember = () => {
         // console.log("AddMember");
         navigate("/our-team/new");
