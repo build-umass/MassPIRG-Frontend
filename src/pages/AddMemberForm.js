@@ -30,8 +30,8 @@ function AddMemberForm() {
         // Do something with the form data, like send it to a server
         // console.log({ name, role, classYear, major, email, description });
 
-        const baseUrl = "http://localhost:5001/api";
-        // const baseUrl = process.env.REACT_APP_ROOT_API;
+        // const baseUrl = "http://localhost:5001/api";
+        const baseUrl = process.env.REACT_APP_BASE_URL;
 
         axios.post(`${baseUrl}/eboard`, {
             name: name,
@@ -43,7 +43,7 @@ function AddMemberForm() {
         }, { headers }).then(res => {
             const { data } = res;
             alert(data.message);
-            navigate("/our-team/new");
+            navigate("/our-team");
         }).catch(err => {
             if (err && err instanceof AxiosError)
             {
