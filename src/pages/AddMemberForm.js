@@ -1,7 +1,8 @@
-import axios, { AxiosError } from 'axios';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
 import { useAuthHeader } from 'react-auth-kit';
+import axios, { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 import './AddMemberForm.css';
 
 function AddMemberForm() {
@@ -11,47 +12,34 @@ function AddMemberForm() {
     const [major, setMajor] = useState('');
     const [email, setEmail] = useState('');
     const [description, setDescription] = useState('');
-
-    const navigate = useNavigate();
     const authHeader = useAuthHeader();
-
+    const navigate = useNavigate();
     const headers = {
-        'Authorization': authHeader()
-    }
-
+        'Authorization': authHeader(),
+    };
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        if (!name || !role || !classYear || !major || !email || !description) {
-            alert("Please fill out all fields");
-            return;
-        }
-
-        // Do something with the form data, like send it to a server
-        // console.log({ name, role, classYear, major, email, description });
-
-        // const baseUrl = "http://localhost:5001/api";
-        const baseUrl = process.env.REACT_APP_BASE_URL;
-
+        const baseUrl = "http://localhost:5001/api";
+        // const baseUrl = process.env.REACT_APP_ROOT_API;
         axios.post(`${baseUrl}/eboard`, {
             name: name,
             role: role,
-            classYear: classYear,
-            major: major,
-            email: email,
-            description: description
+            // and other fields
         }, { headers }).then(res => {
             const { data } = res;
-            alert(data.message);
-            navigate("/our-team");
+            // localStorage.setItem('token', data.token);
+            navigate('/');
+            console.log(data.message);
         }).catch(err => {
             if (err && err instanceof AxiosError)
             {
                 console.log(err.response?.data.message);
-            } else if (err && err instanceof Error) {
+            } else if (err && err instanceof Error)
+            {
                 console.log(err.message);
             }
-        })
+        });
+
     };
 
     return (
