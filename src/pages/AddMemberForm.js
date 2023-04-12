@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { useAuthHeader } from 'react-auth-kit';
+import axios, { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 import './AddMemberForm.css';
 
 function AddMemberForm() {
@@ -8,11 +12,34 @@ function AddMemberForm() {
     const [major, setMajor] = useState('');
     const [email, setEmail] = useState('');
     const [description, setDescription] = useState('');
-
+    const authHeader = useAuthHeader();
+    const navigate = useNavigate();
+    const headers = {
+        'Authorization': authHeader(),
+    };
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Do something with the form data, like send it to a server
-        console.log({ name, major, email, description });
+        const baseUrl = "http://localhost:5001/api";
+        // const baseUrl = process.env.REACT_APP_ROOT_API;
+        axios.post(`${baseUrl}/eboard`, {
+            name: name,
+            role: role,
+            // and other fields
+        }, { headers }).then(res => {
+            const { data } = res;
+            // localStorage.setItem('token', data.token);
+            navigate('/');
+            console.log(data.message);
+        }).catch(err => {
+            if (err && err instanceof AxiosError)
+            {
+                console.log(err.response?.data.message);
+            } else if (err && err instanceof Error)
+            {
+                console.log(err.message);
+            }
+        });
+
     };
 
     return (
