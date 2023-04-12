@@ -15,9 +15,7 @@ const LoginPage = () => {
     const signIn = useSignIn();
     const submitHandler = (event) => {
         event.preventDefault();
-        const baseUrl = "http://localhost:5001/api";
-        // const baseUrl = process.env.REACT_APP_ROOT_API;
-        console.log(email, password)
+        const baseUrl = process.env.REACT_APP_BASE_URL;
         axios.post(`${baseUrl}/auth/login`, {
             email: email,
             password: password,
