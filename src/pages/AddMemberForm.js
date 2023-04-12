@@ -20,17 +20,26 @@ function AddMemberForm() {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        const baseUrl = "http://localhost:5001/api";
-        // const baseUrl = process.env.REACT_APP_ROOT_API;
+
+        if (!name || !role || !classYear || !major || !email || !description) {
+            alert("Please fill out all fields");
+            return;
+        }
+
+        // Do something with the form data, like send it to a server
+        // console.log({ name, role, classYear, major, email, description });
+
+        // const baseUrl = "http://localhost:5001/api";
+        const baseUrl = process.env.REACT_APP_BASE_URL;
+
         axios.post(`${baseUrl}/eboard`, {
             name: name,
             role: role,
             // and other fields
         }, { headers }).then(res => {
             const { data } = res;
-            // localStorage.setItem('token', data.token);
-            navigate('/');
-            console.log(data.message);
+            alert(data.message);
+            navigate("/our-team");
         }).catch(err => {
             if (err && err instanceof AxiosError)
             {
