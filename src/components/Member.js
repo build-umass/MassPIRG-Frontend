@@ -10,10 +10,10 @@ const Member = (props) => {
             </div>
             <div className="col-8 my-3">
                 <h3 className={`${classes.textNameTitle}`}>{props.name} // {props.role}</h3>
-                <p>{props.classYear} | {props.major}</p>
+                <p>Class of {props.classYear} | {props.major}</p>
                 <p className={`${classes.textEmail}`}>{props.email}</p>
                 <p>{props.description}</p>
-                {props.isLoggedIn && <button className="btn btn-danger">Delete</button>}
+                {props.isLoggedIn && <button className="btn btn-danger" onClick={() => props.onDelete(props.id)}>Delete</button>}
             </div>
         </div>
     )
