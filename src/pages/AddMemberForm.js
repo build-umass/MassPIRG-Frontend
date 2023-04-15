@@ -1,6 +1,6 @@
+import axios, { AxiosError } from 'axios';
 import React, { useState } from 'react';
 import { useAuthHeader } from 'react-auth-kit';
-import axios, { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 import './AddMemberForm.css';
@@ -19,17 +19,30 @@ function AddMemberForm() {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (!name || !role || !classYear || !major || !email || !description)
+        {
+            alert("Please fill out all fields");
+            return;
+        }
+
+        // Do something with the form data, like send it to a server
+        // console.log({ name, role, classYear, major, email, description });
+
         const baseUrl = "http://localhost:5001/api";
         // const baseUrl = process.env.REACT_APP_ROOT_API;
+
         axios.post(`${baseUrl}/eboard`, {
             name: name,
             role: role,
-            // and other fields
+            classYear: classYear,
+            major: major,
+            email: email,
+            description: description
         }, { headers }).then(res => {
             const { data } = res;
-            // localStorage.setItem('token', data.token);
-            navigate('/');
-            console.log(data.message);
+            alert(data.message);
+            navigate("/our-team/new");
         }).catch(err => {
             if (err && err instanceof AxiosError)
             {
@@ -38,9 +51,8 @@ function AddMemberForm() {
             {
                 console.log(err.message);
             }
-        });
-
-    };
+        })
+    }
 
     return (
         <form onSubmit={handleSubmit} className="add-member-form">
