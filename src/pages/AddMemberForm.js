@@ -1,4 +1,7 @@
+import axios, { AxiosError } from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
+import { useAuthHeader } from 'react-auth-kit';
 import './AddMemberForm.css';
 
 function AddMemberForm() {
@@ -9,10 +12,46 @@ function AddMemberForm() {
     const [email, setEmail] = useState('');
     const [description, setDescription] = useState('');
 
+    const navigate = useNavigate();
+    const authHeader = useAuthHeader();
+
+    const headers = {
+        'Authorization': authHeader()
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (!name || !role || !classYear || !major || !email || !description) {
+            alert("Please fill out all fields");
+            return;
+        }
+
         // Do something with the form data, like send it to a server
-        console.log({ name, major, email, description });
+        // console.log({ name, role, classYear, major, email, description });
+
+        const baseUrl = "http://localhost:5001/api";
+        // const baseUrl = process.env.REACT_APP_ROOT_API;
+
+        axios.post(`${baseUrl}/eboard`, {
+            name: name,
+            role: role,
+            classYear: classYear,
+            major: major,
+            email: email,
+            description: description
+        }, { headers }).then(res => {
+            const { data } = res;
+            alert(data.message);
+            navigate("/our-team/new");
+        }).catch(err => {
+            if (err && err instanceof AxiosError)
+            {
+                console.log(err.response?.data.message);
+            } else if (err && err instanceof Error) {
+                console.log(err.message);
+            }
+        })
     };
 
     return (
