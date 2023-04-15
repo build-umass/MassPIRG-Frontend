@@ -1,7 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import React, { useState } from 'react';
 import { useAuthHeader } from 'react-auth-kit';
-import axios, { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 import './AddMemberForm.css';
@@ -21,7 +20,8 @@ function AddMemberForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!name || !role || !classYear || !major || !email || !description) {
+        if (!name || !role || !classYear || !major || !email || !description)
+        {
             alert("Please fill out all fields");
             return;
         }
@@ -49,8 +49,7 @@ function AddMemberForm() {
                 console.log(err.message);
             }
         });
-
-    };
+    }
 
     return (
         <form onSubmit={handleSubmit} className="add-member-form">
