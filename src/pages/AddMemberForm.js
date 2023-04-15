@@ -29,17 +29,20 @@ function AddMemberForm() {
         // Do something with the form data, like send it to a server
         // console.log({ name, role, classYear, major, email, description });
 
-        // const baseUrl = "http://localhost:5001/api";
-        const baseUrl = process.env.REACT_APP_BASE_URL;
+        const baseUrl = "http://localhost:5001/api";
+        // const baseUrl = process.env.REACT_APP_ROOT_API;
 
         axios.post(`${baseUrl}/eboard`, {
             name: name,
             role: role,
-            // and other fields
+            classYear: classYear,
+            major: major,
+            email: email,
+            description: description
         }, { headers }).then(res => {
             const { data } = res;
             alert(data.message);
-            navigate("/our-team");
+            navigate("/our-team/new");
         }).catch(err => {
             if (err && err instanceof AxiosError)
             {
@@ -48,7 +51,7 @@ function AddMemberForm() {
             {
                 console.log(err.message);
             }
-        });
+        })
     }
 
     return (
