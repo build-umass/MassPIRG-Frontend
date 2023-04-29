@@ -12,12 +12,13 @@ function AddMemberForm() {
     const [major, setMajor] = useState('');
     const [email, setEmail] = useState('');
     const [description, setDescription] = useState('');
+    const [selectedImage, setSelectedImage] = useState(null);
     const authHeader = useAuthHeader();
     const navigate = useNavigate();
     const headers = {
         'Authorization': authHeader(),
     };
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (!name || !role || !classYear || !major || !email || !description)
@@ -26,24 +27,51 @@ function AddMemberForm() {
             return;
         }
 
-        // Do something with the form data, like send it to a server
-        // console.log({ name, role, classYear, major, email, description });
-
+        let uploadedImage = "";
         const baseUrl = "http://localhost:5001/api";
-        // const baseUrl = process.env.REACT_APP_ROOT_API;
 
-        axios.post(`${baseUrl}/eboard`, {
-            name: name,
-            role: role,
-            classYear: classYear,
-            major: major,
-            email: email,
-            description: description
-        }, { headers }).then(res => {
-            const { data } = res;
+
+        if (selectedImage)
+        {
+            const formData = new FormData();
+            formData.append('image', selectedImage);
+            try
+            {
+                const response = await axios.post(`${baseUrl}/s3/upload`, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': authHeader(),
+                    }
+                });
+                uploadedImage = response.data.data;
+            } catch (err)
+            {
+                if (err && err instanceof AxiosError)
+                {
+                    console.log(err.response?.data.message);
+                } else if (err && err instanceof Error)
+                {
+                    console.log(err.message);
+                }
+            }
+        }
+
+        try
+        {
+            const response = await axios.post(`${baseUrl}/eboard`, {
+                name: name,
+                role: role,
+                classYear: classYear,
+                major: major,
+                email: email,
+                description: description,
+                image: uploadedImage,
+            }, { headers });
+            const { data } = response;
             alert(data.message);
-            navigate("/our-team/new");
-        }).catch(err => {
+            navigate("/our-team");
+        } catch (err)
+        {
             if (err && err instanceof AxiosError)
             {
                 console.log(err.response?.data.message);
@@ -51,7 +79,11 @@ function AddMemberForm() {
             {
                 console.log(err.message);
             }
-        })
+        }
+    }
+
+    const fileSelectedHandler = (event) => {
+        setSelectedImage(event.target.files[0]);
     }
 
     return (
@@ -84,6 +116,10 @@ function AddMemberForm() {
             <label className="add-member-label">
                 Description
                 <textarea value={description} onChange={(e) => setDescription(e.target.value)} className="add-member-textarea" />
+            </label>
+            <label className="add-member-label">
+                Image
+                <input type="file" className="add-member-input" onChange={fileSelectedHandler}/>
             </label>
             <button type="submit" className="add-member-button">Add Member</button>
         </form>
