@@ -2,6 +2,7 @@ import axios, { AxiosError } from 'axios';
 import React, { useState } from 'react';
 import { useAuthHeader } from 'react-auth-kit';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import './AddMemberForm.css';
 
@@ -48,10 +49,10 @@ function AddMemberForm() {
             {
                 if (err && err instanceof AxiosError)
                 {
-                    console.log(err.response?.data.message);
+                    toast.error(err.response?.data.message);
                 } else if (err && err instanceof Error)
                 {
-                    console.log(err.message);
+                    toast.error(err.message);
                 }
             }
         }
@@ -68,16 +69,16 @@ function AddMemberForm() {
                 image: uploadedImage,
             }, { headers });
             const { data } = response;
-            alert(data.message);
+            toast.success(data.message);
             navigate("/our-team");
         } catch (err)
         {
             if (err && err instanceof AxiosError)
             {
-                console.log(err.response?.data.message);
+                toast.error(err.response?.data.message);
             } else if (err && err instanceof Error)
             {
-                console.log(err.message);
+                toast.error(err.message);
             }
         }
     }
