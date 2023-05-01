@@ -4,6 +4,8 @@ import CommonImage from "../components/CommonImage";
 import Member from "../components/Member";
 import { useIsAuthenticated, useAuthHeader, useAuthUser } from 'react-auth-kit';
 import axios, { AxiosError } from 'axios';
+import { toast } from 'react-toastify';
+
 // import DynamicMember from "../components/DynamicMember";
 // import image1 from "../assets/image1.png";
 // import image2 from "../assets/image2.png";
@@ -92,13 +94,14 @@ const EBoardMembers = () => {
         axios.delete(`${baseUrl}/eboard/${memberId}`, { headers }).then(res => {
             const { data } = res;
             console.log(data);
+            toast.success(data.message);
         }).catch(err => {
             if (err && err instanceof AxiosError)
             {
-                console.log(err.response?.data.message);
+                toast.error(err.response?.data.message);
             } else if (err && err instanceof Error)
             {
-                console.log(err.message);
+                toast.error(err.message);
             }
         })
         setMembers(prevMembers => prevMembers.filter(member => member._id !== memberId));

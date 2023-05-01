@@ -8,7 +8,9 @@ import EBoardMembers from './pages/EBoardMembers';
 import AddMemberForm from './pages/AddMemberForm';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
-import { RequireAuth } from 'react-auth-kit'
+import { RequireAuth } from 'react-auth-kit';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <Layout>
@@ -24,6 +26,17 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+      />
     </Layout>
   );
 }
