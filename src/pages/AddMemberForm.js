@@ -24,12 +24,18 @@ function AddMemberForm() {
 
         if (!name || !role || !classYear || !major || !email || !description)
         {
-            alert("Please fill out all fields");
-            return;
+        toast.warn("Please fill out all fields");
+        return;
+        }
+
+        if (isNaN(classYear))
+        {
+        toast.error("Class year must be a number");
         }
 
         let uploadedImage = "";
-        const baseUrl = "http://localhost:5001/api";
+        // const baseUrl = "http://localhost:5001/api";
+        const baseUrl = process.env.REACT_APP_BASE_URL;
 
 
         if (selectedImage)

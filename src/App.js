@@ -11,6 +11,7 @@ import RegisterPage from './pages/RegisterPage';
 import { RequireAuth } from 'react-auth-kit';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import EditMemberForm from './pages/EditMemberForm';
 function App() {
   return (
     <Layout>
@@ -19,9 +20,15 @@ function App() {
         <Route path="/campaigns" element={<AllCampaigns />} />
         <Route path="/our-team" element={<EBoardMembers />} />
         <Route path="/our-team/new" element={
-        < RequireAuth loginPath={'/login'}>
-          <AddMemberForm />
-        </RequireAuth>} />
+          < RequireAuth loginPath={'/login'}>
+            <AddMemberForm />
+          </RequireAuth>
+        } />
+        <Route path="/our-team/edit/:id" element={
+          < RequireAuth loginPath={'/login'}>
+            <EditMemberForm />
+          </RequireAuth>
+        } />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="*" element={<NotFound />} />
