@@ -1,7 +1,12 @@
 // import svgDir from "src/assets";
 import classes from './Member.module.css';
+import { useNavigate } from 'react-router-dom';
+
 const Member = (props) => {
-    
+    const navigate = useNavigate();
+    const editRedirect = (id) => {
+        navigate(`/our-team/edit/${id}`);
+    }
     return (
         <div className={`row ${classes.bgGray} my-4`}>
             <div className="col-4 my-2">
@@ -13,6 +18,7 @@ const Member = (props) => {
                 <p>Class of {props.classYear} | {props.major}</p>
                 <p className={`${classes.textEmail}`}>{props.email}</p>
                 <p>{props.description}</p>
+                {props.isLoggedIn && <button className="btn btn-info mx-2" onClick={() => editRedirect(props.id)}>Edit</button>}
                 {props.isLoggedIn && <button className="btn btn-danger" onClick={() => props.onDelete(props.id)}>Delete</button>}
             </div>
         </div>
