@@ -5,8 +5,8 @@
 }
 
 .carousel .slider-wrapper{
-    width: 70%;
-    height: fit-content;
+    width: 40%;
+    height: 700px;
 }
 
 .carousel .thumb{
@@ -15,10 +15,6 @@
 
 .carousel{
     text-align: center;
-}
-
-.car-bg{
-    background-color: #2e2e2e;
 }
 
 .header-text{

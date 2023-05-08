@@ -1,9 +1,43 @@
 import LoginImage from '../assets/login.png';
 import './LoginPage.css';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
+import { useSignIn } from 'react-auth-kit';
+import axios, { AxiosError } from 'axios';
 import Logo from '../assets/mass-logo.png';
+
 // Path: src/pages/LoginPage.js
 
 const LoginPage = () => {
+    const [email, setemail] = useState('');
+    const [password, setpassword] = useState('');
+    const navigate = useNavigate();
+    const signIn = useSignIn();
+    const submitHandler = (event) => {
+        event.preventDefault();
+        const baseUrl = process.env.REACT_APP_BASE_URL;
+        axios.post(`${baseUrl}/auth/login`, {
+            email: email,
+            password: password,
+        }).then(res => {
+            const { data } = res;
+            // localStorage.setItem('token', data.token);
+            signIn({
+                token: data.token,
+                expiresIn: 3600,
+                tokenType: "Bearer",
+                authState: { email: email }
+            })
+            navigate('/');
+            console.log(data.message);
+        }).catch(err => {
+            if (err && err instanceof AxiosError) {
+                console.log(err.response?.data.message);
+            } else if (err && err instanceof Error) {
+                console.log(err.message);
+            }
+        })
+    }
     return (
         <div className="login-page">
             <div className="relative w-100 h-100 d-flex flex-col">
@@ -20,15 +54,15 @@ const LoginPage = () => {
                         </div>
                         <div className="tab-content">
                             <div className="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                                <form className="login-page__container__right__form">
+                                <form className="login-page__container__right__form" onSubmit={submitHandler}>
                                     <div className="form-outline mb-4">
-                                        <input type="email" id="loginName" className="form-control" />
-                                        <label className="form-label text-light" for="loginName">Email or username</label>
+                                        <input type="email" id="email" value={email} onChange={event => setemail(event.target.value)} className="form-control" />
+                                        <label className="form-label text-light" htmlFor="email">Email or username</label>
                                     </div>
 
                                     <div className="form-outline mb-4">
-                                        <input type="password" id="loginPassword" className="form-control" />
-                                        <label className="form-label text-light" for="loginPassword">Password</label>
+                                        <input type="password" id="loginPassword" value={password} onChange={event => setpassword(event.target.value)} className="form-control" />
+                                        <label className="form-label text-light" htmlFor="password">Password</label>
                                     </div>
                                     <div className="mb-auto p-2 w-100">
                                         <button type="submit" className="btn btn-primary rounded text-light">Sign In</button>

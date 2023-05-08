@@ -14,8 +14,7 @@ const RegisterPage = () => {
     const signIn = useSignIn();
     const submitHandler = (event) => {
         event.preventDefault();
-        const baseUrl = "http://localhost:5001/api";
-        // const baseUrl = process.env.REACT_APP_ROOT_API;
+        const baseUrl = process.env.REACT_APP_BASE_URL;
         console.log(email, password)
         axios.post(`${baseUrl}/auth/register`, {
             email: email,

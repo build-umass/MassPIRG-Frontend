@@ -18,7 +18,7 @@ const AllCampaigns = () => {
                                     We Helped Contact Over 50,000 Students To Help Them Vote And Inform Them About What
                                     Is On The Ballot In A Non-Partisan Way
                                 </p>
-                                <Link to="/campaign">
+                                <Link to="/campaign3">
                                     Click to learn more
                                 </Link>
                             </span>
@@ -48,7 +48,7 @@ const AllCampaigns = () => {
                                 <p>
                                     In order to reduce the financial burden, MASSPIRG advocates for the usage of Open Educational Resources, open source information that professors can utilize to create a free class resource.
                                 </p>
-                                <a href="/campaign3">
+                                <a href="/campaign1">
                                     Click to Learn More
                                 </a>
                             </span>
