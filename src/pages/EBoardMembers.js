@@ -89,7 +89,7 @@ const EBoardMembers = () => {
         })
     }
 
-    const deleteMember = (memberId) => {
+    const deleteMember = (memberId, assetId) => {
         const baseUrl = process.env.REACT_APP_BASE_URL;
         axios.delete(`${baseUrl}/eboard/${memberId}`, { headers }).then(res => {
             const { data } = res;
@@ -104,6 +104,21 @@ const EBoardMembers = () => {
                 toast.error(err.message);
             }
         })
+
+        axios.delete(`${baseUrl}/s3/delete/${assetId}`, { headers }).then(res => {
+            const { data } = res;
+            console.log(data);
+            toast.success(data.message);
+        }).catch(err => {
+            if (err && err instanceof AxiosError)
+            {
+                toast.error(err.response?.data.message);
+            } else if (err && err instanceof Error)
+            {
+                toast.error(err.message);
+            }
+        })
+
         setMembers(prevMembers => prevMembers.filter(member => member._id !== memberId));
     }
 

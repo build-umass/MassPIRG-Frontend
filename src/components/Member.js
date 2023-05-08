@@ -7,6 +7,12 @@ const Member = (props) => {
     const editRedirect = (id) => {
         navigate(`/our-team/edit/${id}`);
     }
+
+    const extractId = (url) => {
+        const id = url.split("/").pop();
+        return id;
+    }
+
     return (
         <div className={`row ${classes.bgGray} my-4`}>
             <div className="col-4 my-2">
@@ -19,7 +25,7 @@ const Member = (props) => {
                 <p className={`${classes.textEmail}`}>{props.email}</p>
                 <p>{props.description}</p>
                 {props.isLoggedIn && <button className="btn btn-info mx-2" onClick={() => editRedirect(props.id)}>Edit</button>}
-                {props.isLoggedIn && <button className="btn btn-danger" onClick={() => props.onDelete(props.id)}>Delete</button>}
+                {props.isLoggedIn && <button className="btn btn-danger" onClick={() => props.onDelete(props.id, extractId(props.image))}>Delete</button>}
             </div>
         </div>
     )
