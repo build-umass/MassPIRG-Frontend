@@ -7,7 +7,7 @@ import img3 from '../assets/image3.png'
 import img4 from '../assets/image4.png'
 import '../pages/Campaign.css'
 
-function Campaign() {
+function Campaign1() {
   return (
     <div className='bg-teal-200'>
       <div className='text-center p-2 text-decoration-underline'>
