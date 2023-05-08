@@ -21,12 +21,32 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/campaigns" element={<AllCampaigns />} />
         <Route path="/our-team" element={<EBoardMembers />} />
-        <Route path="/our-team/new" element={<AddMemberForm />} />
+        <Route path="/our-team/new" element={
+          < RequireAuth loginPath={'/login'}>
+            <AddMemberForm />
+          </RequireAuth>
+        } />
+        <Route path="/our-team/edit/:id" element={
+          < RequireAuth loginPath={'/login'}>
+            <EditMemberForm />
+          </RequireAuth>
+        } />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/campaign" element={<Campaign />} />
       </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+      />
     </Layout>
   );
 }
