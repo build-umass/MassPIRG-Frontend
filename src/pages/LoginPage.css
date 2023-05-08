@@ -1,0 +1,15 @@
+.login-page__container__left{
+    background-color: #3A3B3A;
+    height: 100%;
+    width: 50%;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.login-page__container__right{
+    background-color: #3A3B3A;
+    height: screen;
+    width: 50%;
+    overflow: hidden;
+    justify-content: center;
+}
