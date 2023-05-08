@@ -9,6 +9,10 @@ import AddMemberForm from './pages/AddMemberForm';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import Campaign from './pages/Campaign';
+import { RequireAuth } from 'react-auth-kit';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import EditMemberForm from './pages/EditMemberForm';
 
 function App() {
   return (
