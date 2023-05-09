@@ -25,17 +25,17 @@ function App() {
         <Route path="/campaigns" element={<AllCampaigns />} />
         <Route path="/our-team" element={<EBoardMembers />} />
         <Route path="/our-team/new" element={
-          < RequireAuth loginPath={'/login'}>
+          < RequireAuth loginPath={'/admin/login'}>
             <AddMemberForm />
           </RequireAuth>
         } />
         <Route path="/our-team/edit/:id" element={
-          < RequireAuth loginPath={'/login'}>
+          < RequireAuth loginPath={'/admin/login'}>
             <EditMemberForm />
           </RequireAuth>
         } />
         <Route path="/admin/register" element={
-          < RequireAuth loginPath={'/login'}>
+          < RequireAuth loginPath={'/admin/login'}>
             <RegisterPage />
           </RequireAuth>
         } />
