@@ -34,8 +34,13 @@ function App() {
             <EditMemberForm />
           </RequireAuth>
         } />
+        <Route path="/register" element={
+          < RequireAuth loginPath={'/login'}>
+            <RegisterPage />
+          </RequireAuth>
+        } />
+        {/* <Route path="/register" element={<RegisterPage />} /> */}
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/campaign1" element={<Campaign />} />
         <Route path="/campaign2" element={<Campaign2 />} />
