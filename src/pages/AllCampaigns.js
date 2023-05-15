@@ -56,9 +56,9 @@ const AllCampaigns = () => {
                     </div>
                 </div>
             </div>
-            <div className="col text-center mt-3">
+            {/* <div className="col text-center mt-3">
                 <a className="btn btn-primary involved strong" href="/#" role="button">Centered button</a>
-            </div>
+            </div> */}
         </div>
     </>
 }
