@@ -35,7 +35,7 @@ const MainNavigation = () => {
                                 <a className="text-white nav-text-font-options" href="/our-team">Who We Are</a>
                             </li>
                             <li className="nav-item mx-3">
-                                <a className="text-white nav-text-font-options" href="/">Get Involved</a>
+                                <a className="text-white nav-text-font-options" href="https://forms.gle/8sJtqmEsXoTfhsRu6">Get Involved</a>
                             </li>
                         </ul>
                         {isLoggedIn && <button onClick={logout} className="btn btn-danger">Logout</button>}
